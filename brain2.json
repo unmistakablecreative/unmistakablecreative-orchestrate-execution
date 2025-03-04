@@ -1,0 +1,39 @@
+{
+    "orchestrate_brain": {
+        "system_version": "1.0 - Local Execution Stable",
+        "operating_logic": {
+            "execution_model": "Local-First, FastAPI Compatible",
+            "tool_detection": {
+                "method": "get_supported_actions",
+                "purpose": "Dynamically retrieves available actions and expected parameters for each tool, ensuring compatibility."
+            },
+            "request_validation": {
+                "pre_execution_check": "Before executing any request, Orchestrate calls get_supported_actions to validate the requested action.",
+                "parameter_formatting": "Ensures all parameters match the tool’s expected input format (JSON structure, CLI arguments).",
+                "error_prevention": "Invalid requests are corrected before execution to prevent failures."
+            },
+            "execution_flow": {
+                "step_1": "User submits a request (e.g., 'Fetch my emails').",
+                "step_2": "Orchestrate identifies the correct tool based on registered tools (e.g., gmail_tool.py).",
+                "step_3": "get_supported_actions is called to retrieve valid actions & required parameters.",
+                "step_4": "The request is dynamically formatted exactly as the tool expects—no assumptions.",
+                "step_5": "FastAPI forwards the request to the appropriate Python script.",
+                "step_6": "The tool executes locally and returns structured results instantly."
+            },
+            "manual_execution": {
+                "current_status": "User-initiated execution required.",
+                "trigger_methods": {
+                    "CLI": "Users can manually trigger scripts via CLI with structured requests.",
+                    "FastAPI": "Users can trigger execution via API requests through the FastAPI server."
+                }
+            },
+            "system_benefits": {
+                "eliminates_api_bottlenecks": "No reliance on external APIs for execution, reducing API failures and token costs.",
+                "error_prevention": "Pre-execution validation ensures requests are formatted correctly before execution.",
+                "speed_optimization": "All execution happens locally, reducing latency to near zero.",
+                "modular_design": "New tools can be added instantly by dropping scripts into the tool directory—no FastAPI modifications required.",
+                "scalability": "Designed to support multi-instance Orchestrate Pigeon communication via JSON messaging."
+            }
+        }
+    }
+}

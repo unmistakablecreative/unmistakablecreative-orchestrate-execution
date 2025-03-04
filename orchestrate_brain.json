@@ -1,0 +1,120 @@
+{
+    "orchestrate_brain": {
+        "system_version": "1.0 - Local Execution Stable",
+        "operating_logic": {
+            "execution_model": "Local-First, FastAPI Compatible",
+            "tool_detection": {
+                "method": "get_supported_actions",
+                "purpose": "Dynamically retrieves available actions and expected parameters for each tool, ensuring compatibility."
+            },
+            "request_validation": {
+                "pre_execution_check": "Before executing any request, Orchestrate calls get_supported_actions to validate the requested action.",
+                "parameter_formatting": "Ensures all parameters match the tool\u2019s expected input format (JSON structure, CLI arguments).",
+                "error_prevention": "Invalid requests are corrected before execution to prevent failures."
+            },
+            "execution_flow": {
+                "step_1": "User submits a request (e.g., 'Fetch my emails').",
+                "step_2": "Orchestrate identifies the correct tool based on registered tools (e.g., gmail_tool.py).",
+                "step_3": "get_supported_actions is called to retrieve valid actions & required parameters.",
+                "step_4": "The request is dynamically formatted exactly as the tool expects\u2014no assumptions.",
+                "step_5": "FastAPI forwards the request to the appropriate Python script.",
+                "step_6": "The tool executes locally and returns structured results instantly."
+            },
+            "manual_execution": {
+                "current_status": "User-initiated execution required.",
+                "trigger_methods": {
+                    "CLI": "Users can manually trigger scripts via CLI with structured requests.",
+                    "FastAPI": "Users can trigger execution via API requests through the FastAPI server."
+                }
+            },
+            "system_benefits": {
+                "eliminates_api_bottlenecks": "No reliance on external APIs for execution, reducing API failures and token costs.",
+                "error_prevention": "Pre-execution validation ensures requests are formatted correctly before execution.",
+                "speed_optimization": "All execution happens locally, reducing latency to near zero.",
+                "modular_design": "New tools can be added instantly by dropping scripts into the tool directory\u2014no FastAPI modifications required.",
+                "scalability": "Designed to support multi-instance Orchestrate Pigeon communication via JSON messaging."
+            }
+        }
+    },
+    "orchestrate_scripting_compliance": {
+        "system_version": "1.0 - Standardized Execution Framework",
+        "script_structure": {
+            "required_sections": [
+                "imports",
+                "get_supported_actions",
+                "execution_functions",
+                "cli_handler",
+                "main_execution_block"
+            ],
+            "example_structure": {
+                "imports": [
+                    "import argparse",
+                    "import json",
+                    "import os"
+                ],
+                "get_supported_actions": "Returns available actions and required parameters.",
+                "execution_functions": "Each function executes a specific action and takes structured parameters.",
+                "cli_handler": "Handles command-line execution via FastAPI and CLI.",
+                "main_execution_block": "Parses JSON input, calls the correct function, and returns structured output."
+            }
+        },
+        "parameter_handling": {
+            "json_input_format": "All scripts must accept parameters as a JSON object.",
+            "fastapi_compatibility": "Scripts must correctly parse JSON parameters when called via FastAPI.",
+            "error_handling": "Scripts must validate parameters before execution and return structured error messages."
+        },
+        "execution_requirements": {
+            "script_naming": "Each script must be named using the convention: [tool_name]_tool.py.",
+            "action_detection": "Scripts must implement a 'get_supported_actions' function.",
+            "execution_flow": {
+                "step_1": "Orchestrate calls get_supported_actions to retrieve valid actions.",
+                "step_2": "User submits a request via FastAPI or CLI.",
+                "step_3": "Script parses JSON parameters and validates input.",
+                "step_4": "Script executes the requested action and returns structured results."
+            }
+        },
+        "error_handling": {
+            "invalid_input": "If required parameters are missing, return a structured error message.",
+            "execution_failure": "If execution fails, log the error and return an error response.",
+            "json_parsing": "Ensure scripts handle JSON decoding errors gracefully."
+        },
+        "modular_design": {
+            "new_scripts": "New scripts can be added instantly\u2014no modifications to FastAPI required.",
+            "dynamic_execution": "Scripts automatically integrate with Orchestrate as long as they follow compliance rules."
+        }
+    },
+    "workflow_design_principles": {
+        "define_outcome": "Always start with a clearly stated outcome, not a task list.",
+        "identify_data_sources": "Determine what information is required and where it lives (Readwise, Airtable, Dropbox, etc.).",
+        "structure_execution": "Break workflows into modular, structured steps that pass data dynamically.",
+        "store_workflow": "Save workflows dynamically into orchestrate_workflows.json with flexible parameters.",
+        "expand_and_optimize": "Allow workflows to evolve based on user execution and feedback.",
+        "automate_discovery": "Automatically suggest or create workflows based on user-described outcomes.",
+        "core_principle": "Orchestrate workflows should be self-building and outcome-driven, eliminating the need for manual setup."
+    },
+    "blitzscaling_framework": {
+        "decision_making": {
+            "speed_vs_stability": "Prioritize speed, but ensure auto-verification after every change.",
+            "execution_bias": "Push features aggressively; only slow down if it threatens scalability.",
+            "prioritization": "Fix high-impact issues; let minor inefficiencies persist.",
+            "mvp_first": "Every new feature starts as the simplest functional version before expansion."
+        },
+        "yc_strategy": {
+            "visibility": "Maintain public updates but minimize unnecessary exposure.",
+            "traction": "Focus on getting Orchestrate into users' hands, even in a rough state.",
+            "iterative_momentum": "Show continuous forward movement\u2014no waiting periods."
+        },
+        "user_adoption": {
+            "beta_access": "Launch invite-only early access instead of waiting for a polished onboarding.",
+            "real_world_validation": "Shift from demos to active user testing and feedback loops."
+        },
+        "initiative_planning": {
+            "evaluation_criteria": "Prioritize initiatives that either accelerate user adoption or remove execution bottlenecks.",
+            "execution_vs_research": {
+                "execution": "Changes that improve automation, execution, or decision-making should be implemented immediately.",
+                "research": "Changes that require validation or unknown payoffs should be explored first before execution."
+            },
+            "mvp_rule": "All new features must start as the simplest working version before expansion."
+        }
+    }
+}

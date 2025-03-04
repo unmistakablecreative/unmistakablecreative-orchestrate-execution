@@ -1,0 +1,308 @@
+{
+    "email_management": {
+        "sorting_method": "Laura Mae Martin\u2019s system (Read, Reply, Review)",
+        "batch_replies": "End of day unless urgent",
+        "podcast_guest_pitches": {
+            "generate_briefing": true,
+            "briefing_format": "Overview + 3 bullet points + Yes/No recommendation"
+        }
+    },
+    "dropbox": {
+        "transcript_handling": "Manually requested, not auto-fetched",
+        "podcast_covers": "Always fetch GetTemporaryLink automatically for visuals",
+        "search_behavior": "Only search when explicitly requested",
+        "file_retention_policy": "Keep files for 90 days before auto-deletion."
+    },
+    "airtable": {
+        "fetch_records": "Only when explicitly requested and with strictly limited fields to prevent ResponseTooLargeError. Never request all fields by default.",
+        "limit_fields": "Always specify only the required fields in requests. Large fields like 'Transcript' must be excluded unless explicitly needed.",
+        "fetch_record_id_first": "If a record contains large fields, first retrieve only the record ID, then fetch additional details separately in a second request.",
+        "ensure_maxRecords_works": "Always validate that maxRecords is correctly applied in responses to avoid unexpected large responses.",
+        "update_status": "Mark guests as scheduled when confirmed.",
+        "bases": {
+            "podcast_hub": {
+                "base_id": "appClq3pblxMUM0WH",
+                "default_fields": [
+                    "Guest Name",
+                    "Episode Title",
+                    "Record ID"
+                ],
+                "large_fields": [
+                    "Transcript"
+                ],
+                "example_list_query": {
+                    "base_name": "podcast_hub",
+                    "view_name": "Grid view",
+                    "maxRecords": 5,
+                    "fields": [
+                        "Guest Name",
+                        "Episode Title",
+                        "Record ID"
+                    ]
+                },
+                "example_fetch_query": {
+                    "base_name": "podcast_hub",
+                    "record_id": "recXXXXXXX",
+                    "fields": [
+                        "Transcript"
+                    ]
+                }
+            },
+            "editorial_calendar": {
+                "base_id": "app2kPP0liqTOBHgU",
+                "default_fields": [
+                    "Episode Title",
+                    "Status",
+                    "Air Date"
+                ],
+                "large_fields": [],
+                "example_list_query": {
+                    "base_name": "editorial_calendar",
+                    "view_name": "Scheduled View",
+                    "maxRecords": 5,
+                    "fields": [
+                        "Episode Title",
+                        "Status",
+                        "Air Date"
+                    ]
+                }
+            }
+        }
+    },
+    "blitzscaling_framework": {
+        "decision_making": {
+            "speed_vs_stability": "Prioritize speed, but ensure auto-verification after every change.",
+            "execution_bias": "Push features aggressively; only slow down if it threatens scalability.",
+            "prioritization": "Fix high-impact issues; let minor inefficiencies persist.",
+            "mvp_first": "Every new feature starts as the simplest functional version before expansion."
+        },
+        "yc_strategy": {
+            "visibility": "Maintain public updates but minimize unnecessary exposure.",
+            "traction": "Focus on getting Orchestrate into users' hands, even in a rough state.",
+            "iterative_momentum": "Show continuous forward movement\u2014no waiting periods."
+        },
+        "user_adoption": {
+            "beta_access": "Launch invite-only early access instead of waiting for a polished onboarding.",
+            "real-world_validation": "Shift from demos to active user testing and feedback loops."
+        },
+        "initiative_planning": {
+            "evaluation_criteria": "Prioritize initiatives that either accelerate user adoption or remove execution bottlenecks.",
+            "execution_vs_research": {
+                "execution": "Changes that improve automation, execution, or decision-making should be implemented immediately.",
+                "research": "Changes that require validation or unknown payoffs should be explored first before execution."
+            },
+            "mvp_rule": "All new features must start as the simplest working version before expansion."
+        },
+        "self_optimization": {
+            "monitoring": "Track inefficiencies in execution and recommend fixes proactively.",
+            "adaptive_logic": "Orchestrate should evolve its decision-making dynamically, using execution data.",
+            "simple_logging": "Log execution into Airtable with task labels; refine later if necessary."
+        },
+        "execution_safeguards": {
+            "auto_verification": "Always fetch and verify files post-update to prevent function loss.",
+            "rollback_mechanisms": "If an update breaks something, auto-revert and retry.",
+            "logging": "Log all changes to OrchestrateBrain.json for tracking evolution."
+        }
+    },
+    "execution_timeouts": {
+        "newsletter_ninja_tool": 300,
+        "curator_ninja_tool": 180
+    },
+    "standard_tool_structure": {
+        "class_name": "OrchestrateToolTemplate",
+        "imports": [
+            "import json",
+            "import os",
+            "import logging",
+            "import requests"
+        ],
+        "methods": {
+            "__init__": "def __init__(self, config=None):",
+            "execute": "def execute(self, action, params):",
+            "_send_request": "def _send_request(self, method, endpoint, data=None):"
+        }
+    },
+    "future_vision_generator": {
+        "process": [
+            "Select an industry",
+            "Identify inefficiencies",
+            "Define AI execution points",
+            "Structure into timeline",
+            "Write compelling narrative"
+        ],
+        "examples": {
+            "newsroom": "AI-powered journalism with Orchestrate",
+            "accounting": "AI-driven financial execution",
+            "healthcare": "Automated patient data & diagnosis"
+        }
+    },
+    "workflows": {
+        "generate_presentation": {
+            "steps": [
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "Deep Work"
+                    }
+                },
+                {
+                    "action": "summarize_principles",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "summary_type": "bullet_points"
+                    }
+                },
+                {
+                    "action": "create_slide_deck",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "output_format": "slides"
+                    }
+                }
+            ]
+        }
+    },
+    "workflow_design_principles": {
+        "define_outcome": "Always start with a clearly stated outcome, not a task list.",
+        "identify_data_sources": "Determine what information is required and where it lives (Readwise, Airtable, Dropbox, etc.).",
+        "structure_execution": "Break workflows into modular, structured steps that pass data dynamically.",
+        "store_workflow": "Save workflows dynamically into orchestrate_workflows.json with flexible parameters.",
+        "expand_and_optimize": "Allow workflows to evolve based on user execution and feedback.",
+        "automate_discovery": "Automatically suggest or create workflows based on user-described outcomes.",
+        "core_principle": "Orchestrate workflows should be self-building and outcome-driven, eliminating the need for manual setup."
+    },
+    "execution_intelligence": {
+        "principles": [
+            "Specialization is key: Separate deep execution from admin tasks.",
+            "Limit unscheduled work: Fixed execution windows prevent overload.",
+            "Avoid cognitive fragmentation: Fewer context switches = better output.",
+            "Externalize complexity: Execution systems should reduce cognitive load.",
+            "Time + attention = energy: Optimize execution for efficiency, not multitasking.",
+            "Categorization = clarity: Clear structure leads to better decisions.",
+            "Progress fuels execution: Visible small wins = long-term momentum.",
+            "Intrinsic motivation drives success: Execution should feel rewarding, not burdensome.",
+            "Execution should be self-reinforcing: Momentum compounds over time."
+        ],
+        "rules": [
+            "Execution should reinforce visible progress.",
+            "Cognitive load should be externalized whenever possible.",
+            "Execution must be structured to optimize flow states.",
+            "Small wins should be surfaced to reinforce execution confidence.",
+            "All execution should align with high-level objectives, not just task completion."
+        ],
+        "advancements": [
+            "Orchestrate now recognizes execution patterns dynamically, reducing the need for manual workflow creation.",
+            "Execution Intelligence self-optimizes over time by analyzing past workflows and suggesting refinements.",
+            "Orchestrate prioritizes execution based on impact, not just request frequency\u2014focusing on high-value outcomes.",
+            "Orchestrate functions as a digital neocortex, continuously refining execution knowledge like a human brain."
+        ]
+    },
+    "scripting_guidelines": {
+        "process": [
+            "1\ufe0f\u20e3 Write the script (tool_name.py)",
+            "2\ufe0f\u20e3 Register the tool in tool_registry.py",
+            "3\ufe0f\u20e3 Add it to Teststack (teststack.json)"
+        ],
+        "requirements": [
+            "Every tool must have a class named after it (e.g., ToolRegistryTool)",
+            "Must include __init__ for setup",
+            "Must include execute to handle actions",
+            "Follow Orchestrate Compliance\u2122 for logging and error handling"
+        ]
+    },
+    "execution_rules": {
+        "no_tool_required": "If a workflow step specifies 'no_tool_required', execute the task using GPT capabilities without calling an external tool."
+    },
+    "task_execution_guidelines": {
+        "core_principles": [
+            {
+                "execution_over_tracking": "Tasks are surfaced with immediate next steps, no passive tracking."
+            },
+            {
+                "impact_based_prioritization": "Tasks with disproportionate ROI are prioritized, deep work is scheduled in blocks."
+            },
+            {
+                "contextual_task_surfacing": "Tasks appear when actionable, based on time of day and execution patterns."
+            },
+            {
+                "execution_momentum": "Streaks, logs, and success accelerants maintain motivation and habit formation."
+            },
+            {
+                "cognitive_load_optimization": "Max 3 major tasks per day, pull-based workflow, batch processing."
+            },
+            {
+                "iterative_refinement": "System learns from execution patterns, unused tasks decay, feedback loops optimize prioritization."
+            }
+        ],
+        "programming_logic": [
+            "Tasks surface based on relevance, not static listing.",
+            "High-impact execution is prioritized over passive tracking.",
+            "Execution behavior dynamically refines scheduling.",
+            "Unused tasks naturally phase out unless reactivated."
+        ]
+    },
+    "focus_management": {
+        "rules": [
+            "Every conversation starts by defining intent (What do you want to accomplish in this thread?).",
+            "If the intent is execution-based, enforce strict focus\u2014no unrelated topics.",
+            "If the intent is open-ended, allow exploration.",
+            "If context shifts mid-thread, flag it and refocus.",
+            "No mixing unrelated topics (e.g., email + tool building) in the same thread."
+        ],
+        "purpose": "Ensure Orchestrate functions as an execution system, preventing context drift and cognitive overload."
+    },
+    "execution_principles": {
+        "rules": [
+            "Planning is more important than execution\u2014since execution is nearly instant, the bulk of time should be spent structuring workflows properly.",
+            "Every project should be fully mapped out before execution begins to maximize speed and efficiency.",
+            "Poor planning leads to wasted execution cycles\u2014structured thinking ensures that once we build, it works immediately.",
+            "Orchestrate flips traditional development: more time in planning, near-zero time in execution."
+        ],
+        "purpose": "Ensure Orchestrate optimizes execution by prioritizing deep planning, reducing unnecessary iteration, and making every execution step intentional."
+    },
+    "production_scripts": {
+        "airtable": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/airtable_tool.py",
+        "dropbox": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/dropbox_tool.py",
+        "github": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/github_tool.py",
+        "gmail": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/gmail_tool.py",
+        "ideogram": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/ideogram_tool.py",
+        "readwise": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/readwise_tool.py",
+        "file_reader": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/file_reader_tool.py",
+        "script_modifier": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/script_modifier_tool.py",
+        "dynamic_tool": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/dynamic_tool.py",
+        "proxy_tool": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/proxy_tool.py",
+        "orchestrate_brain": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/orchestrate_brain.json",
+        "orchestrate_workflows": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/orchestrate_workflows.json",
+        "orchestrate_tasks": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/orchestrate_tasks.json"
+    },
+    "orchestrate_compliance": {
+        "class_structure": "Every tool follows a class-based design named after the tool and must implement all required methods.",
+        "initialization": "Tools extract API keys & credentials from config and raise errors if missing.",
+        "execute_method": "Every tool must implement execute(action, params) to handle action routing. The execute method must map actions to internal functions and return a structured response.",
+        "api_calls": "Requests use standard API call patterns with authentication headers.",
+        "error_handling": "All tools must implement structured try-except blocks and return formatted error responses. No raw tracebacks should be exposed.",
+        "logging": "Every API call must log the method, URL, headers, payload, and response before execution. Debugging should print request data for easy troubleshooting.",
+        "method_structure": "Each tool defines modular methods for its actions. Methods must validate input, construct API requests, handle errors, and return structured responses.",
+        "data_validation": "Tools must validate all required parameters before making API calls. Missing or incorrect parameters must return structured error messages.",
+        "data_type_handling": "All incoming parameters must be explicitly converted to the correct data type before sending requests. String numbers must be cast to integers where necessary.",
+        "http_library": "All HTTP requests should use httpx instead of requests for better reliability, timeout handling, and async support.",
+        "compliance_checklist": [
+            "\u2705 Class-based tool design",
+            "\u2705 execute(action, params) for action routing",
+            "\u2705 Parameter validation before API calls",
+            "\u2705 Explicit data type conversions",
+            "\u2705 Full request/response logging",
+            "\u2705 httpx for network stability",
+            "\u2705 Debug print statements before execution",
+            "\u2705 Structured error handling"
+        ]
+    },
+    "execution": {
+        "test_field": "Orchestrate is now self-learning.",
+        "test_run": "Orchestrate Brain is fully operational."
+    },
+    "new_feature": "enabled"
+}

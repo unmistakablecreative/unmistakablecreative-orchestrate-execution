@@ -1,0 +1,52 @@
+{
+    "tools": {
+        "custom_tool": {
+            "path": "custom_tool.py"
+        },
+        "orchestrate_brain_tool": {
+            "path": "orchestrate_brain_tool.py"
+        },
+        "task_tool": {
+            "path": "task_tool.py"
+        },
+        "gmail_tool": {
+            "path": "gmail_tool.py"
+        },
+        "spark_file_tool": {
+            "path": "spark_file_tool.py"
+        },
+        "ideogram_tool": {
+            "path": "ideogram_tool.py"
+        },
+        "orchetstrate_workflow_tool": {
+            "path": "orchetstrate_workflow_tool.py"
+        },
+        "airtable_tool": {
+            "path": "airtable_tool.py"
+        },
+        "readwise_tool": {
+            "path": "readwise_tool.py"
+        },
+        "github_tool": {
+            "path": "github_tool.py"
+        },
+        "dropbox_tool": {
+            "path": "dropbox_tool.py"
+        },
+        "mailjet_tool": {
+            "path": "mailjet_tool.py"
+        },
+        "fix_dropbox_tool": {
+            "path": "fix_dropbox_tool.py"
+        },
+        "orchestrate_workflow_tool": {
+            "path": "orchestrate_workflow_tool.py"
+        },
+        "orchestrate_tools": {
+            "path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/tool_manager.py"
+        },
+        "file_reader_tool": {
+            "path": "file_reader_tool.py"
+        }
+    }
+}

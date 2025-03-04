@@ -1,0 +1,807 @@
+{
+    "workflows": {
+        "generate_presentation": {
+            "description": "Creates a 10-slide presentation from book principles.",
+            "steps": [
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{input}"
+                    }
+                },
+                {
+                    "action": "summarize_principles",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "summary_type": "bullet_points"
+                    }
+                },
+                {
+                    "action": "create_slide_deck",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "output_format": "slides"
+                    }
+                }
+            ]
+        },
+        "summarize_topic_across_books": {
+            "description": "Fetches highlights from multiple books and synthesizes key insights.",
+            "steps": [
+                {
+                    "action": "fetch_multiple_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_titles": "{input}"
+                    }
+                },
+                {
+                    "action": "extract_common_themes",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "summary_type": "themes"
+                    }
+                }
+            ]
+        },
+        "draft_blog_post_from_books": {
+            "description": "Drafts a blog post outline using book insights.",
+            "steps": [
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{input}"
+                    }
+                },
+                {
+                    "action": "generate_blog_outline",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "structure": "questions"
+                    }
+                }
+            ]
+        },
+        "create_investor_one_pager": {
+            "description": "Generates an investor-style one-pager from book insights.",
+            "steps": [
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{input}"
+                    }
+                },
+                {
+                    "action": "structure_one_pager",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "sections": [
+                            "Problem",
+                            "Solution",
+                            "Market",
+                            "Traction"
+                        ]
+                    }
+                }
+            ]
+        },
+        "competitor_analysis": {
+            "description": "Fetches competitive insights and structures a comparative analysis.",
+            "steps": [
+                {
+                    "action": "fetch_competitor_data",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "competitors": "{input}"
+                    }
+                },
+                {
+                    "action": "generate_comparison",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "comparison_type": "strengths_weaknesses_opportunities_threats"
+                    }
+                }
+            ]
+        },
+        "compare_books": {
+            "description": "Fetches highlights from two books, identifies key similarities and differences, and outputs a structured comparison report.",
+            "steps": [
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{input_1}"
+                    }
+                },
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{input_2}"
+                    }
+                },
+                {
+                    "action": "compare_highlights",
+                    "tool": "gpt_tool",
+                    "params": {
+                        "text_1": "{previous_output_1}",
+                        "text_2": "{previous_output_2}",
+                        "comparison_type": "key_differences_and_similarities"
+                    }
+                }
+            ]
+        },
+        "Execution Intelligence Refinement": {
+            "steps": [
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{input}"
+                    }
+                },
+                {
+                    "action": "extract_key_principles",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "synthesize_execution_rules",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "integrate_into_brain",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}"
+                    }
+                }
+            ]
+        },
+        "Landing Page Copy Optimization": {
+            "steps": [
+                {
+                    "action": "ask_question",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "Are we creating new copy or optimizing existing copy?"
+                    }
+                },
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": [
+                            "Made to Stick",
+                            "The Hype Handbook",
+                            "Simply Put"
+                        ]
+                    }
+                },
+                {
+                    "action": "score_copy",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "copy": "{user_provided_text}",
+                        "scoring_principles": "Extracted from book notes"
+                    }
+                },
+                {
+                    "action": "generate_table",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "copy": "{previous_output}",
+                        "scores": "{scoring_output}"
+                    }
+                },
+                {
+                    "action": "generate_landing_page_preview",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "copy": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "generate_ab_test_variations",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "copy": "{previous_output}",
+                        "variation_count": 2
+                    }
+                }
+            ]
+        },
+        "Project Design & Execution": {
+            "steps": [
+                {
+                    "action": "define_project",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "What is the project? Why does it matter?"
+                    }
+                },
+                {
+                    "action": "break_into_steps",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "List the core execution tasks required to complete it."
+                    }
+                },
+                {
+                    "action": "assign_execution",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "Who/what executes each task?"
+                    }
+                },
+                {
+                    "action": "track_progress",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "How will we track execution progress?"
+                    }
+                },
+                {
+                    "action": "iterate_optimize",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "What refinements are needed post-execution?"
+                    }
+                }
+            ]
+        },
+        "Review_Tasks_And_Projects": {
+            "steps": [
+                {
+                    "action": "list_tasks",
+                    "tool": "todoist_tool",
+                    "params": {}
+                },
+                {
+                    "action": "map_project_names",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "project_map": {
+                            "2349291435": "Event-Based Automation",
+                            "2349744651": "Podcast Transcripts in GitHub",
+                            "2349744670": "Orchestrate Lite"
+                        },
+                        "tasks": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "summarize_tasks",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "tasks": "{previous_output}",
+                        "group_by": "project_name",
+                        "sort_by": "priority"
+                    }
+                },
+                {
+                    "action": "display_overview",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "summary": "{previous_output}"
+                    }
+                }
+            ]
+        },
+        "Summarize_Visualize_and_Capture_Key_Concepts": {
+            "steps": [
+                {
+                    "action": "ask_question",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "Which book are we synthesizing?",
+                        "skip_if_provided": "book_title"
+                    }
+                },
+                {
+                    "action": "fetch_book_notes",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{user_selection}"
+                    }
+                },
+                {
+                    "action": "summarize_principles",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "summary_type": "core_concepts"
+                    }
+                },
+                {
+                    "action": "generate_image",
+                    "tool": "ideogram_tool",
+                    "params": {
+                        "prompt": "An infographic summarizing the key concepts of {user_selection}.",
+                        "aspect": "ASPECT_16_9"
+                    }
+                },
+                {
+                    "action": "add_entry",
+                    "tool": "spark_file_tool",
+                    "params": {
+                        "content": "Key takeaways from {user_selection}: {previous_output}",
+                        "category": "Book Notes",
+                        "source": "{user_selection}"
+                    }
+                }
+            ]
+        },
+        "tool_update_workflow": {
+            "description": "Ensures safe local script modifications before syncing to production.",
+            "steps": [
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/{tool_name}.py"
+                    }
+                },
+                {
+                    "action": "duplicate_file",
+                    "tool": "duplicate_file_tool",
+                    "params": {
+                        "source_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/{tool_name}.py",
+                        "destination_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/{tool_name}.py"
+                    }
+                },
+                {
+                    "action": "modify_script",
+                    "tool": "script_modifier_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/{tool_name}.py",
+                        "function_name": "{function_name}",
+                        "function_code": "{function_code}"
+                    }
+                },
+                {
+                    "action": "execute_script",
+                    "tool": "local_python_script_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/{tool_name}.py",
+                        "params": []
+                    }
+                },
+                {
+                    "action": "start_test_server",
+                    "tool": "test_server_tool",
+                    "params": {}
+                }
+            ]
+        },
+        "Process My Inbox": {
+            "description": "Fetches unread emails, sorts them using 'Read, Reply, Review', and optionally creates Todoist tasks.",
+            "steps": [
+                {
+                    "action": "fetch_emails",
+                    "tool": "gmail_tool",
+                    "params": {
+                        "account": "{user_selection}",
+                        "timeframe": "30d",
+                        "max_results": 50
+                    }
+                },
+                {
+                    "action": "sort_emails",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "method": "Read, Reply, Review",
+                        "important_updates": [
+                            "bank notifications",
+                            "financial alerts",
+                            "transaction receipts"
+                        ]
+                    }
+                },
+                {
+                    "action": "filter_emails",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "show_only": [
+                            "Reply",
+                            "Review"
+                        ]
+                    }
+                },
+                {
+                    "action": "prompt_archive",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "Archive 'Read' emails? (Y/N)"
+                    }
+                },
+                {
+                    "action": "track_archives",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "threshold": 10,
+                        "auto_archive": "true"
+                    }
+                }
+            ],
+            "final_cleanup": {
+                "action": "archive_emails",
+                "tool": "gmail_tool"
+            }
+        },
+        "Quick Modify": {
+            "description": "Instantly modify scripts/tools on the fly without stopping execution.",
+            "steps": [
+                {
+                    "action": "prompt_for_modification",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "Which script/tool do you want to modify?"
+                    }
+                },
+                {
+                    "action": "duplicate_file",
+                    "tool": "duplicate_file_tool",
+                    "params": {
+                        "source_path": "{user_selection}",
+                        "destination_path": "{user_selection}.backup"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "{user_selection}"
+                    }
+                },
+                {
+                    "action": "prompt_for_change",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "question": "Describe the modification you want to make."
+                    }
+                },
+                {
+                    "action": "modify_script",
+                    "tool": "script_modifier_tool",
+                    "params": {
+                        "file_path": "{user_selection}",
+                        "function_name": "{function_to_modify}",
+                        "function_code": "{user_provided_code}"
+                    }
+                },
+                {
+                    "action": "execute_script",
+                    "tool": "local_python_script_tool",
+                    "params": {
+                        "file_path": "{user_selection}"
+                    }
+                },
+                {
+                    "action": "confirm_success",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "message": "\u2705 Script modified and executed successfully."
+                    }
+                }
+            ]
+        },
+        "Tool Generator Comparison Workflow": {
+            "steps": [
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/airtable_test_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/airtable_tool.py"
+                    }
+                },
+                {
+                    "action": "compare_files",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "generated_version": "{previous_output_1}",
+                        "production_version": "{previous_output_2}"
+                    }
+                },
+                {
+                    "action": "log_differences",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "comparison_result": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/airtable_test_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/airtable_tool.py"
+                    }
+                },
+                {
+                    "action": "compare_files",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "generated_version": "{previous_output_1}",
+                        "production_version": "{previous_output_2}"
+                    }
+                },
+                {
+                    "action": "log_differences",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "comparison_result": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/dropbox_test_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/dropbox_tool.py"
+                    }
+                },
+                {
+                    "action": "compare_files",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "generated_version": "{previous_output_1}",
+                        "production_version": "{previous_output_2}"
+                    }
+                },
+                {
+                    "action": "log_differences",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "comparison_result": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/github_test_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/github_tool.py"
+                    }
+                },
+                {
+                    "action": "compare_files",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "generated_version": "{previous_output_1}",
+                        "production_version": "{previous_output_2}"
+                    }
+                },
+                {
+                    "action": "log_differences",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "comparison_result": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/gmail_test_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/gmail_tool.py"
+                    }
+                },
+                {
+                    "action": "compare_files",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "generated_version": "{previous_output_1}",
+                        "production_version": "{previous_output_2}"
+                    }
+                },
+                {
+                    "action": "log_differences",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "comparison_result": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/ideogram_test_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/ideogram_tool.py"
+                    }
+                },
+                {
+                    "action": "compare_files",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "generated_version": "{previous_output_1}",
+                        "production_version": "{previous_output_2}"
+                    }
+                },
+                {
+                    "action": "log_differences",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "comparison_result": "{previous_output}"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/readwise_test_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/readwise_tool.py"
+                    }
+                },
+                {
+                    "action": "compare_files",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "generated_version": "{previous_output_1}",
+                        "production_version": "{previous_output_2}"
+                    }
+                },
+                {
+                    "action": "log_differences",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "comparison_result": "{previous_output}"
+                    }
+                }
+            ]
+        },
+        "new_tool_integration": {
+            "description": "Automates the full tool integration process for Orchestrate.",
+            "steps": [
+                {
+                    "action": "search_brain",
+                    "tool": "orchestrate_brain_tool",
+                    "params": {
+                        "query": "Orchestrate Compliance Guidelines"
+                    }
+                },
+                {
+                    "action": "load_toolstack",
+                    "tool": "skillstack_tool",
+                    "params": {}
+                },
+                {
+                    "action": "create_file",
+                    "tool": "github_tool",
+                    "params": {
+                        "repo_name": "unmistakablecreative-orchestrate-testbed",
+                        "path": "{tool_name}.py",
+                        "content": "# New tool script placeholder"
+                    }
+                },
+                {
+                    "action": "git_pull",
+                    "tool": "github_manager_tool",
+                    "params": {
+                        "repo_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/"
+                    }
+                },
+                {
+                    "action": "execute_script",
+                    "tool": "local_python_script_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/{tool_name}.py",
+                        "params": []
+                    }
+                },
+                {
+                    "action": "register_tool",
+                    "tool": "tool_registry_tool",
+                    "params": {
+                        "tool_name": "{tool_name}"
+                    }
+                },
+                {
+                    "action": "add_tool",
+                    "tool": "teststack_tool",
+                    "params": {
+                        "tool_name": "{tool_name}"
+                    }
+                },
+                {
+                    "action": "notify",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "message": "\u2705 {tool_name} is fully integrated, compliance-checked, and ready for Postman testing."
+                    }
+                },
+                {
+                    "action": "duplicate_file",
+                    "tool": "duplicate_file_tool",
+                    "params": {
+                        "source_path": "/Users/srinivas/Orchestrate Github/orchestrate-testbed/{tool_name}.py",
+                        "destination_path": "/Users/srinivas/Orchestrate Github/sandbox-abstraction/{tool_name}.py"
+                    }
+                }
+            ]
+        },
+        "Test Workflow": {
+            "steps": [
+                "step1",
+                "step2"
+            ]
+        },
+        "generate_summary": {
+            "description": "Summarizes text into key bullet points.",
+            "steps": [
+                {
+                    "action": "fetch_text",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Documents/sample.txt"
+                    }
+                },
+                {
+                    "action": "summarize_text",
+                    "tool": "no_tool_required",
+                    "params": {
+                        "text": "{previous_output}",
+                        "summary_type": "bullet_points"
+                    }
+                }
+            ]
+        }
+    }
+}
