@@ -2,25 +2,41 @@ from fastapi import FastAPI, HTTPException
 import subprocess
 import json
 import os
+import logging
 
 app = FastAPI()
 
+# Tool configuration files
 ORCHESTRATE_TOOLS_PATH = "orchestrate_tools.json"
+MARKETPLACE_TOOLS_PATH = "orchestrate_marketplace.json"
+ORCHESTRATE_BRAIN_PATH = "orchestrate_brain.json"
+ORCHESTRATE_RECALL_PATH = "orchestrate_recall.json"
+
+# Set up logging
+logging.basicConfig(level=logging.WARNING, format="%(asctime)s - %(levelname)s - %(message)s")
 
 def load_tools():
-    """Loads all tools from orchestrate_tools.json."""
-    try:
-        with open(ORCHESTRATE_TOOLS_PATH, "r") as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return {"error": "orchestrate_tools.json not found."}
+    """Loads tools from all sources and merges them into a single dictionary."""
+    tools = {}
+
+    for file_path in [ORCHESTRATE_TOOLS_PATH, MARKETPLACE_TOOLS_PATH, ORCHESTRATE_BRAIN_PATH, ORCHESTRATE_RECALL_PATH]:
+        try:
+            if os.path.exists(file_path):
+                with open(file_path, "r") as file:
+                    tools.update(json.load(file).get("tools", {}))
+            else:
+                logging.warning(f"{file_path} not found. Skipping.")
+        except (json.JSONDecodeError, FileNotFoundError) as e:
+            logging.warning(f"Failed to load {file_path}: {str(e)}")
+
+    return {"tools": tools}
 
 def run_script(tool_name, action, params):
-    """Runs a tool dynamically based on orchestrate_tools.json."""
+    """Runs a tool dynamically based on the loaded tools."""
     tools = load_tools().get("tools", {})
 
     if tool_name not in tools:
-        return {"error": f"Tool '{tool_name}' not found in orchestrate_tools.json."}
+        return {"error": f"Tool '{tool_name}' not found."}
 
     script_path = tools[tool_name]["path"]
     params_json = json.dumps(params)
@@ -38,7 +54,7 @@ def run_script(tool_name, action, params):
 
 @app.get("/load_tools")
 def load_tools_from_json():
-    """Returns all tools from orchestrate_tools.json."""
+    """Returns all tools from orchestrate_tools.json, orchestrate_marketplace.json, orchestrate_brain.json, and orchestrate_recall.json."""
     return load_tools()
 
 @app.get("/get_supported_actions/{tool_name}")

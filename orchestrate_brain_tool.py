@@ -7,10 +7,15 @@ logging.basicConfig(level=logging.INFO)
 
 BRAIN_PATH = os.path.join(os.getcwd(), "orchestrate_brain.json")
 
+def ensure_brain_file():
+    """Ensure the Orchestrate Brain file exists."""
+    if not os.path.exists(BRAIN_PATH):
+        with open(BRAIN_PATH, "w") as f:
+            json.dump({}, f)
+
 def load_brain():
     """Load the orchestrate_brain.json file."""
-    if not os.path.exists(BRAIN_PATH):
-        return {}
+    ensure_brain_file()
     with open(BRAIN_PATH, "r") as file:
         return json.load(file)
 
@@ -18,19 +23,20 @@ def save_brain(brain):
     """Save updates to orchestrate_brain.json."""
     with open(BRAIN_PATH, "w") as file:
         json.dump(brain, file, indent=4)
-    logging.info("Orchestrate Brain successfully updated.")
+    logging.info("✅ Orchestrate Brain successfully updated.")
 
 def get_supported_actions():
     """Return supported actions as a JSON dictionary."""
     return {
-        "update_field": ["update_path", "new_value"],
-        "add_field": ["update_path", "new_value"],
-        "remove_field": ["update_path"],
-        "search_brain": ["query"]
+        "update_logic": ["update_path", "new_value"],
+        "add_logic": ["update_path", "new_value"],
+        "remove_logic": ["update_path"],
+        "search_brain": ["query"],
+        "get_supported_actions": []
     }
 
 def search_brain(query):
-    """Recursively search for a key or value in orchestrate_brain.json."""
+    """Search for a key or value in orchestrate_brain.json."""
     brain = load_brain()
     matches = {}
 
@@ -46,7 +52,7 @@ def search_brain(query):
     recursive_search(brain)
     return matches if matches else {"message": "No matches found."}
 
-def update_field(update_path, new_value):
+def update_logic(update_path, new_value):
     """Update an existing field in orchestrate_brain.json (supports dot notation)."""
     brain = load_brain()
     keys = update_path.split(".")
@@ -56,16 +62,16 @@ def update_field(update_path, new_value):
         if key in ref and isinstance(ref[key], dict):
             ref = ref[key]
         else:
-            return {"success": False, "error": f"Field '{update_path}' not found."}
+            return {"status": "error", "message": f"Field '{update_path}' not found."}
 
     last_key = keys[-1]
     if last_key in ref:
         ref[last_key] = new_value
         save_brain(brain)
-        return {"success": True, "message": f"Updated '{update_path}' to '{new_value}'."}
-    return {"success": False, "error": f"Field '{update_path}' not found."}
+        return {"status": "success", "message": f"✅ Updated '{update_path}' to '{new_value}'."}
+    return {"status": "error", "message": f"Field '{update_path}' not found."}
 
-def add_field(update_path, new_value):
+def add_logic(update_path, new_value):
     """Add a new field to orchestrate_brain.json (supports dot notation)."""
     brain = load_brain()
     keys = update_path.split(".")
@@ -78,13 +84,13 @@ def add_field(update_path, new_value):
 
     last_key = keys[-1]
     if last_key in ref:
-        return {"success": False, "error": f"Field '{update_path}' already exists."}
+        return {"status": "error", "message": f"Field '{update_path}' already exists."}
 
     ref[last_key] = new_value
     save_brain(brain)
-    return {"success": True, "message": f"Added '{update_path}'."}
+    return {"status": "success", "message": f"✅ Added '{update_path}'."}
 
-def remove_field(update_path):
+def remove_logic(update_path):
     """Remove a field from orchestrate_brain.json (supports dot notation)."""
     brain = load_brain()
     keys = update_path.split(".")
@@ -94,15 +100,15 @@ def remove_field(update_path):
         if key in ref and isinstance(ref[key], dict):
             ref = ref[key]
         else:
-            return {"success": False, "error": f"Field '{update_path}' not found."}
+            return {"status": "error", "message": f"Field '{update_path}' not found."}
 
     last_key = keys[-1]
     if last_key in ref:
         del ref[last_key]
         save_brain(brain)
-        return {"success": True, "message": f"Removed '{update_path}'."}
+        return {"status": "success", "message": f"✅ Removed '{update_path}'."}
 
-    return {"success": False, "error": f"Field '{update_path}' not found."}
+    return {"status": "error", "message": f"Field '{update_path}' not found."}
 
 def execute_action(action, params):
     """Execute the given action with provided parameters."""
@@ -110,13 +116,13 @@ def execute_action(action, params):
         return get_supported_actions()
     elif action == "search_brain":
         return search_brain(params.get("query", ""))
-    elif action == "update_field":
-        return update_field(params.get("update_path", ""), params.get("new_value", ""))
-    elif action == "add_field":
-        return add_field(params.get("update_path", ""), params.get("new_value", ""))
-    elif action == "remove_field":
-        return remove_field(params.get("update_path", ""))
-    return {"error": "Invalid action."}
+    elif action == "update_logic":
+        return update_logic(params.get("update_path", ""), params.get("new_value", ""))
+    elif action == "add_logic":
+        return add_logic(params.get("update_path", ""), params.get("new_value", ""))
+    elif action == "remove_logic":
+        return remove_logic(params.get("update_path", ""))
+    return {"status": "error", "message": "Invalid action."}
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Orchestrate Brain Tool - CLI JSON Manager")

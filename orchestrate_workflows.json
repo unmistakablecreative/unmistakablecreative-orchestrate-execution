@@ -802,6 +802,97 @@
                     }
                 }
             ]
+        },
+        "YC Application Update": {
+            "steps": [
+                {
+                    "step": "Extract Core Update Structure",
+                    "description": "Analyze the update and extract the key structural elements for clarity."
+                },
+                {
+                    "step": "Summarize Key Breakthroughs",
+                    "description": "Identify 3-5 major advancements Orchestrate has made since the last update."
+                },
+                {
+                    "step": "Explain Impact Clearly",
+                    "description": "Ensure the update focuses on why these advancements matter, not just what they are."
+                },
+                {
+                    "step": "Refine for Simplicity",
+                    "description": "Use lessons from Simply Put\u2014clear, outcome-driven messaging with no jargon."
+                },
+                {
+                    "step": "Format for Consistency",
+                    "description": "Use a standard update structure: Headline, Key Updates, Impact Statement."
+                },
+                {
+                    "step": "Send for Review",
+                    "description": "Prepare the update for YC review and approval."
+                }
+            ]
+        },
+        "Auto-Update Brain with Insights": {
+            "steps": [
+                {
+                    "action": "fetch_highlights",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{{user_input}}"
+                    }
+                },
+                {
+                    "action": "update_logic",
+                    "tool": "orchestrate_brain_tool",
+                    "params": {
+                        "update_path": "insights.{{user_input}}",
+                        "new_value": "{{step_1.result}}"
+                    }
+                }
+            ]
+        },
+        "Effortless Execution Framework": {
+            "steps": [
+                {
+                    "action": "fetch_highlights",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "{{user_input}}"
+                    }
+                },
+                {
+                    "action": "add_logic",
+                    "tool": "orchestrate_brain_tool",
+                    "params": {
+                        "update_path": "insights.{{user_input}}",
+                        "new_value": "step_1.result"
+                    }
+                },
+                {
+                    "action": "create_task",
+                    "tool": "task_tool",
+                    "params": {
+                        "content": "Apply effortless execution principles to an active project."
+                    }
+                }
+            ]
+        },
+        "Final Test Workflow": {
+            "steps": [
+                {
+                    "action": "fetch_highlights",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "Deep Work"
+                    }
+                },
+                {
+                    "action": "generate_image",
+                    "tool": "ideogram_tool",
+                    "params": {
+                        "prompt": "A futuristic city skyline at sunset."
+                    }
+                }
+            ]
         }
     }
 }
