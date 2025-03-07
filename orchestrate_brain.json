@@ -116,5 +116,93 @@
             },
             "mvp_rule": "All new features must start as the simplest working version before expansion."
         }
-    }
+    },
+    "orchestrate_workflows": {
+        "system_integrity_check": {
+            "name": "system_integrity_check",
+            "steps": [
+                {
+                    "action": "show_all_entries",
+                    "tool": "spark_file_tool",
+                    "params": {}
+                },
+                {
+                    "action": "list_tasks",
+                    "tool": "task_tool",
+                    "params": {}
+                },
+                {
+                    "action": "search_brain",
+                    "tool": "orchestrate_brain_tool",
+                    "params": {
+                        "query": "Execution"
+                    }
+                },
+                {
+                    "action": "search_workflow",
+                    "tool": "orchestrate_workflow_tool",
+                    "params": {
+                        "query": "Test Workflow"
+                    }
+                },
+                {
+                    "action": "fetch_highlights",
+                    "tool": "readwise_tool",
+                    "params": {
+                        "book_title": "Deep Work"
+                    }
+                },
+                {
+                    "action": "generate_image",
+                    "tool": "ideogram_tool",
+                    "params": {
+                        "prompt": "A futuristic city skyline at sunset.",
+                        "aspect_ratio": "ASPECT_16_9",
+                        "model": "V_2",
+                        "magic_prompt_option": "AUTO"
+                    }
+                },
+                {
+                    "action": "search_files",
+                    "tool": "dropbox_tool",
+                    "params": {
+                        "query": "Seth Godin"
+                    }
+                },
+                {
+                    "action": "fetch_emails",
+                    "tool": "gmail_tool",
+                    "params": {
+                        "account": "srini@unmistakablemedia.com",
+                        "timeframe": "1d",
+                        "max_results": 5
+                    }
+                }
+            ]
+        }
+    },
+    "frameworks": {
+        "Integrate_Obliterate_Strategy": {
+            "name": "Integrate vs. Obliterate vs. Obliteration by Integration",
+            "description": "A strategic framework for deciding how Orchestrate develops new features based on three categories: \n\n\u2705 **Integrate** \u2192 Use external tools when they provide specialized value as an API (e.g., Readwise for OCR, Mailjet for email delivery). \n\ud83d\udc80 **Obliterate** \u2192 Replace tools that Orchestrate can execute better, faster, and cheaper (e.g., Zapier, Asana, Notion). \n\u26a1 **Obliteration by Integration** \u2192 Absorb tools by integrating first, then making them redundant (e.g., Gmail, OpenAI API).\n\nThis framework ensures Orchestrate builds with strategic intent\u2014leveraging existing tools when useful, eliminating inefficiencies, and absorbing functionality where needed."
+        }
+    },
+    "production_scripts": [
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/airtable_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/dropbox_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/github_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/gmail_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/ideogram_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/leonardo_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/mailjet_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/mem_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/orchestrate_brain_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/orchestrate_recall.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/orchestrate_workflow_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/podcast_cover_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/readwise_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/roadmap_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/spark_file_tool.py",
+        "/Users/srinivas/Orchestrate Github/orchestrate-execution/task_tool.py"
+    ]
 }

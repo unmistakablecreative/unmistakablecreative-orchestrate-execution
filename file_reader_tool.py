@@ -1,61 +1,45 @@
-import argparse
-import os
 import json
-import logging
+import os
+import argparse
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+CREDENTIALS_FILE = "credentials.json"
+BASE_DIR = os.getcwd()
 
-def get_supported_actions():
-    """Return the list of supported actions and required parameters."""
-    return {
-        "read_file": ["file_path"]
-    }
+def read_file(filename):
+    """Reads content from a file in BASE_DIR."""
+    file_path = os.path.join(BASE_DIR, filename)
+    
+    if not os.path.exists(file_path):
+        return {"status": "error", "message": f"❌ File '{filename}' not found."}
+    
+    with open(file_path, "r") as f:
+        content = f.read()
+    
+    return {"status": "success", "content": content}
 
-def read_file(file_path):
-    """Reads the full content of a file."""
-    try:
-        if not os.path.exists(file_path):
-            return {"status": "error", "message": f"❌ ERROR: File not found - {file_path}"}
-
-        with open(file_path, "r", encoding="utf-8") as file:
-            content = file.read()
-
-        logging.info(f"✅ File read successfully: {file_path}")
-        return {"status": "success", "content": content}
-
-    except Exception as e:
-        logging.error(f"❌ ERROR reading file {file_path}: {str(e)}")
-        return {"status": "error", "message": str(e)}
+def execute_action(action, params):
+    """Executes file read operations."""
+    filename = params.get("input", "")
+    
+    if not filename:
+        return {"status": "error", "message": "❌ 'filename' is required."}
+    
+    return read_file(filename)
 
 def main():
     parser = argparse.ArgumentParser(description="File Reader Tool")
-    parser.add_argument("action", choices=["get_supported_actions", "read_file"], help="Action to perform")
-    parser.add_argument("--params", type=str, required=False, help="JSON-encoded parameters for the action")
-
+    parser.add_argument("action", choices=["read_file"], help="Action to perform")
+    parser.add_argument("--params", type=str, required=True, help="JSON-encoded parameters")
     args = parser.parse_args()
-
-    if args.action == "get_supported_actions":
-        print(json.dumps(get_supported_actions(), indent=4))
-        return
-
-    # ✅ Parse JSON parameters
+    
     try:
-        params = json.loads(args.params)
+        params_dict = json.loads(args.params)
     except json.JSONDecodeError:
-        print(json.dumps({"status": "error", "message": "Invalid JSON format in --params."}, indent=4))
+        print(json.dumps({"status": "error", "message": "Invalid JSON format."}, indent=4))
         return
-
-    # ✅ Execute the selected action
-    actions = {
-        "read_file": read_file
-    }
-
-    if args.action in actions:
-        result = actions[args.action](**params)
-        print(json.dumps(result, indent=4))
-    else:
-        print(json.dumps({"status": "error", "message": f"❌ Unsupported action: {args.action}"}))
+    
+    result = execute_action(args.action, params_dict)
+    print(json.dumps(result, indent=4))
 
 if __name__ == "__main__":
     main()

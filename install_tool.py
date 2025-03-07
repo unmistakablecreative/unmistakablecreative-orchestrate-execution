@@ -3,77 +3,76 @@ import os
 import argparse
 import requests
 import logging
-from typing import Dict, Any
 
 # 🔥 Paths
 MARKETPLACE_JSON = "orchestrate_marketplace.json"
 TOOLS_JSON = "orchestrate_tools.json"
-TOOLS_DIRECTORY = "."  # Adjust if needed
+TOOLS_DIRECTORY = os.getcwd()  # Ensure proper pathing
 
 # 🔥 Configure logging
 logging.basicConfig(filename="install_tool.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-def load_json(file_path: str) -> Dict[str, Any]:
-    """Safely loads a JSON file."""
+def load_json(file_path):
+    """Loads a JSON file safely."""
     if not os.path.exists(file_path):
         return {}
     with open(file_path, "r") as f:
         return json.load(f)
 
-def save_json(file_path: str, data: Dict[str, Any]):
-    """Safely saves JSON data."""
+def save_json(file_path, data):
+    """Saves data to a JSON file."""
     with open(file_path, "w") as f:
         json.dump(data, f, indent=4)
 
-def install_tool(tool_name: str) -> Dict[str, Any]:
-    """Installs a tool from the GitHub marketplace."""
+def install_tool(tool_name):
+    """Downloads and installs a tool from the GitHub marketplace."""
     marketplace = load_json(MARKETPLACE_JSON)
     tools = load_json(TOOLS_JSON)
 
-    if tool_name not in marketplace.get("tools", {}):
+    if "tools" not in marketplace or tool_name not in marketplace["tools"]:
         return {"error": f"Tool '{tool_name}' not found in the marketplace."}
 
     if marketplace["tools"][tool_name].get("installed"):
         return {"error": f"Tool '{tool_name}' is already installed."}
 
     repo_url = marketplace["tools"][tool_name].get("repo_url")
+
     if not repo_url:
         return {"error": f"Tool '{tool_name}' does not have a valid GitHub URL."}
 
-    # 🔥 Download the tool script
+    # 🔥 Download the tool from GitHub
     response = requests.get(repo_url)
+
     if response.status_code != 200:
         return {"error": f"Failed to download '{tool_name}' from {repo_url} (HTTP {response.status_code})."}
 
-    # 🔥 Save the tool script
+    # 🔥 Ensure correct file path
     tool_filename = f"{tool_name}.py"
     tool_path = os.path.join(TOOLS_DIRECTORY, tool_filename)
 
     with open(tool_path, "w") as f:
         f.write(response.text)
 
-    # 🔥 Register the tool
-    tools.setdefault("tools", {})[tool_name] = {"path": tool_path}
+    # 🔥 Register only the relative path in orchestrate_tools.json
+    tools.setdefault("tools", {})[tool_name] = {"path": tool_filename}
     save_json(TOOLS_JSON, tools)
 
     # 🔥 Update marketplace status
     marketplace["tools"][tool_name]["installed"] = True
     save_json(MARKETPLACE_JSON, marketplace)
 
-    logging.info(f"✅ Installed tool: {tool_name}")
+    logging.info(f"✅ Installed tool: {tool_name} from {repo_url}")
     return {"status": "success", "message": f"✅ '{tool_name}' installed successfully from {repo_url}."}
 
-def uninstall_tool(tool_name: str) -> Dict[str, Any]:
-    """Uninstalls a tool by removing its file and updating JSONs."""
+def uninstall_tool(tool_name):
+    """Removes a tool and updates orchestrate_marketplace.json."""
     marketplace = load_json(MARKETPLACE_JSON)
     tools = load_json(TOOLS_JSON)
 
     if tool_name not in tools.get("tools", {}):
         return {"error": f"Tool '{tool_name}' is not installed."}
 
-    tool_path = tools["tools"][tool_name]["path"]
-
-    # 🔥 Remove tool file
+    tool_path = os.path.join(TOOLS_DIRECTORY, tools["tools"][tool_name]["path"])
     if os.path.exists(tool_path):
         os.remove(tool_path)
 
@@ -89,34 +88,24 @@ def uninstall_tool(tool_name: str) -> Dict[str, Any]:
     logging.info(f"❌ Uninstalled tool: {tool_name}")
     return {"status": "success", "message": f"❌ '{tool_name}' uninstalled successfully."}
 
-def get_supported_actions() -> Dict[str, Any]:
-    """Returns supported actions for Orchestrate compliance."""
-    return {
-        "install": ["tool_name"],
-        "uninstall": ["tool_name"],
-        "get_supported_actions": []
-    }
-
-def execute_action(action: str, params: Dict[str, Any]) -> Dict[str, Any]:
-    """Handles execution of install, uninstall, and get_supported_actions."""
-    if action == "install":
-        return install_tool(params.get("tool_name", ""))
-    elif action == "uninstall":
-        return uninstall_tool(params.get("tool_name", ""))
-    elif action == "get_supported_actions":
-        return get_supported_actions()
-    else:
-        return {"error": f"Invalid action '{action}'."}
-
 def main():
-    parser = argparse.ArgumentParser(description="Install Tool for Orchestrate")
-    parser.add_argument("action", type=str, choices=["install", "uninstall", "get_supported_actions"], help="Action to perform")
+    parser = argparse.ArgumentParser(description="Install Tool")
+    parser.add_argument("action", choices=["install", "uninstall"], help="Action to perform")
     parser.add_argument("--params", type=str, help="JSON-encoded parameters")
-
     args = parser.parse_args()
     params = json.loads(args.params) if args.params else {}
 
-    print(json.dumps(execute_action(args.action, params), indent=4))
+    if args.action == "install":
+        if "tool_name" not in params:
+            print(json.dumps({"status": "error", "message": "❌ 'tool_name' is required for install."}))
+        else:
+            print(json.dumps(install_tool(params["tool_name"]), indent=4))
+
+    elif args.action == "uninstall":
+        if "tool_name" not in params:
+            print(json.dumps({"status": "error", "message": "❌ 'tool_name' is required for uninstall."}))
+        else:
+            print(json.dumps(uninstall_tool(params["tool_name"]), indent=4))
 
 if __name__ == "__main__":
     main()

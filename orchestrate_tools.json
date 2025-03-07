@@ -14,23 +14,19 @@
         },
         "spark_file_tool": {
             "path": "spark_file_tool.py",
-            "description": "Processes files using Apache Spark for large-scale data handling."
+            "description": "Knowledge capture and retrieval within Orchestrate."
         },
         "ideogram_tool": {
             "path": "ideogram_tool.py",
-            "description": "Generates images and artistic designs using Ideogram AI."
-        },
-        "orchetstrate_workflow_tool": {
-            "path": "orchetstrate_workflow_tool.py",
-            "description": "Orchestrates workflows for complex, multi-step automation."
+            "description": "Creates AI-generated images with artistic styling."
         },
         "airtable_tool": {
             "path": "airtable_tool.py",
-            "description": "Interacts with Airtable for database-like spreadsheet management."
+            "description": "Manages structured data using Airtable’s API."
         },
         "github_tool": {
             "path": "github_tool.py",
-            "description": "Manages GitHub repositories, issues, and commits programmatically."
+            "description": "Manages GitHub repositories, issues, and commits."
         },
         "dropbox_tool": {
             "path": "dropbox_tool.py",
@@ -38,58 +34,59 @@
         },
         "mailjet_tool": {
             "path": "mailjet_tool.py",
-            "description": "Sends bulk emails and manages email campaigns via Mailjet."
+            "description": "Manages email campaigns and transactional email delivery."
         },
-        "orchestrate_workflow_tool": {
-            "path": "orchestrate_workflow_tool.py",
-            "description": "Defines workflow blueprints for Orchestrate, specifying which tools to use and in what sequence. It does not execute tasks but structures automated processes."
+        "create_workflow_tool": {
+            "path": "create_workflow_tool.py",
+            "description": "Creates and updates workflow definitions in Orchestrate."
+        },
+        "workflow_execution_tool": {
+            "path": "workflow_execution_tool.py",
+            "description": "Executes pre-defined workflows in Orchestrate."
         },
         "file_reader_tool": {
             "path": "file_reader_tool.py",
-            "description": "Reads, analyzes, and processes files locally without downloading."
-        },
-        "curator_ninja": {
-            "path": "curator_ninja.py",
-            "description": "Curation tool for filtering and organizing relevant content."
+            "description": "Reads and processes local files for automation tasks."
         },
         "roadmap_tool": {
             "path": "roadmap_tool.py",
-            "description": "Manages the Orchestrate roadmap, allowing features to be added, updated, and tracked in development."
-        },
-        "podcast_cover_tool": {
-            "path": "PodcastCoverTool.py",
-            "description": "Generates podcast cover art using background scripts and Photoshop JSX."
+            "description": "Tracks and updates Orchestrate’s feature roadmap."
         },
         "newsletter_ninja": {
             "path": "newsletter_ninja.py",
-            "description": "Automates newsletter creation, formatting, and distribution."
+            "description": "Automates newsletter creation, formatting, and scheduling."
         },
         "orchestrate_recall": {
             "path": "orchestrate_recall.py",
-            "description": "Persistent memory for Orchestrate\u2014stores notes, context, and execution history across threads."
+            "description": "Persistent memory—stores notes, tasks, and execution history."
         },
         "leonardo_tool": {
             "path": "leonardo_tool.py",
-            "description": "Generates high-quality AI images using Leonardo AI."
-        },
-        "FileManager": {
-            "path": "file_manager.py",
-            "description": "Manages file operations including search, move, rename, duplicate, and delete."
+            "description": "Creates high-quality AI-generated images using Leonardo AI."
         },
         "install_tool": {
-            "path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/install_tool.py",
-            "description": "Installs tools from GitHub into Orchestrate."
+            "path": "install_tool.py",
+            "description": "Installs and uninstalls Orchestrate tools from GitHub."
         },
         "tool_manager": {
-            "path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/tool_manager.py",
-            "description": "Manages Orchestrate tools."
+            "path": "tool_manager.py",
+            "description": "Manages tools, including installation, updates, and removal."
         },
         "mem_tool": {
-            "path": "./mem_tool.py",
-            "description": "No description provided. Please update this tool."
+            "path": "mem_tool.py",
+            "description": "Interfaces with Mem for knowledge capture"
+        },
+        "vs_code_tool": {
+            "path": "vs_code_tool.py",
+            "description": "Writes and modifies Orchestrate scripts directly in VS Code."
+        },
+        "local_script_execute": {
+            "path": "local_script_execute.py",
+            "description": "Executes local Python scripts for debugging and testing."
         },
         "readwise_tool": {
-            "path": "./readwise_tool.py"
+            "path": "readwise_tool.py",
+            "description": "Syncs with Readwise to organize and retrieve saved highlights."
         }
     }
 }

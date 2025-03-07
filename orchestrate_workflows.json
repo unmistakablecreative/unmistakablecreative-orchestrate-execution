@@ -4,7 +4,7 @@
             "description": "Creates a 10-slide presentation from book principles.",
             "steps": [
                 {
-                    "action": "fetch_book_notes",
+                    "action": "fetch_highlights",
                     "tool": "readwise_tool",
                     "params": {
                         "book_title": "{input}"
@@ -891,6 +891,139 @@
                     "params": {
                         "prompt": "A futuristic city skyline at sunset."
                     }
+                }
+            ]
+        },
+        "batch_script_reading": {
+            "description": "Reads all scripts in orchestrate-execution and summarizes necessary changes.",
+            "steps": [
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/airtable_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/dropbox_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/github_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/gmail_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/ideogram_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/leonardo_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/mailjet_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/mem_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/readwise_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/roadmap_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/spark_file_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/task_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/vs_code_tool.py"
+                    }
+                },
+                {
+                    "action": "read_file",
+                    "tool": "file_reader_tool",
+                    "params": {
+                        "file_path": "/Users/srinivas/Orchestrate Github/orchestrate-execution/workflow_execution_tool.py"
+                    }
+                }
+            ]
+        },
+        "test_workflow3": {
+            "description": "Test workflow3",
+            "steps": [
+                {
+                    "action": "list_tasks",
+                    "tool": "task_tool",
+                    "params": {}
+                }
+            ]
+        },
+        "test_workflow4": {
+            "description": "Test workflow",
+            "steps": [
+                {
+                    "action": "list_tasks",
+                    "tool": "task_tool",
+                    "params": {}
+                }
+            ]
+        },
+        "final_test_workflow": {
+            "description": "Final test workflow",
+            "steps": [
+                {
+                    "action": "list_tasks",
+                    "tool": "task_tool",
+                    "params": {}
                 }
             ]
         }

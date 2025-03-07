@@ -1,0 +1,15 @@
+{
+    "tasks": [
+        {
+            "task_id": "weekly_report",
+            "status": "Completed",
+            "result": "https://orchestrate-reports.com/weekly/030424",
+            "message": "Srini, your weekly analytics report is ready!"
+        },
+        {
+            "task_id": "ai_news_fetch",
+            "status": "In Progress",
+            "message": "Fetching the latest AI news for you..."
+        }
+    ]
+}

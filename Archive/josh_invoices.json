@@ -1,0 +1,371 @@
+[
+    {
+        "Reference (Click to view)": "Dec Inv 91",
+        "Date": "1/23/2023",
+        "Description": "Invoice",
+        "Debit": "$550.00",
+        "Credit": "",
+        "Running Balance": "$550.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Jan Inv 93",
+        "Date": "3/9/2023",
+        "Description": "Invoice",
+        "Debit": "$430.00",
+        "Credit": "",
+        "Running Balance": "$980.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Feb Inv 94",
+        "Date": "3/23/2023",
+        "Description": "Invoice",
+        "Debit": "$325.00",
+        "Credit": "",
+        "Running Balance": "$1,305.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "British Council Inv 95",
+        "Date": "3/23/2023",
+        "Description": "Invoice",
+        "Debit": "$247.50",
+        "Credit": "",
+        "Running Balance": "$1,552.50",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Mar Invoice 96",
+        "Date": "4/17/2023",
+        "Description": "Invoice",
+        "Debit": "$360.00",
+        "Credit": "",
+        "Running Balance": "$1,912.50",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "6587500107JO",
+        "Date": "4/18/2023",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$572.50",
+        "Running Balance": "$1,340.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "6593700121JO",
+        "Date": "5/2/2023",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$360.00",
+        "Running Balance": "$980.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Apr Inv 97",
+        "Date": "5/16/2023",
+        "Description": "Invoice",
+        "Debit": "$430.00",
+        "Credit": "",
+        "Running Balance": "$1,410.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "7262200156JO",
+        "Date": "6/6/2023",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$430.00",
+        "Running Balance": "$980.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "May Inv 99",
+        "Date": "7/14/2023",
+        "Description": "Invoice",
+        "Debit": "$270.00",
+        "Credit": "",
+        "Running Balance": "$1,250.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Jun Inv 98",
+        "Date": "7/14/2023",
+        "Description": "Invoice",
+        "Debit": "$310.00",
+        "Credit": "",
+        "Running Balance": "$1,560.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "72454100205JO",
+        "Date": "7/25/2023",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$580.00",
+        "Running Balance": "$980.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Jul Inv 100",
+        "Date": "8/17/2023",
+        "Description": "Invoice",
+        "Debit": "$345.00",
+        "Credit": "",
+        "Running Balance": "$1,325.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "8039000236JO",
+        "Date": "8/25/2023",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$345.00",
+        "Running Balance": "$980.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Aug Inv 101",
+        "Date": "9/27/2023",
+        "Description": "Invoice",
+        "Debit": "$360.00",
+        "Credit": "",
+        "Running Balance": "$1,340.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Sep Inv 102",
+        "Date": "9/27/2023",
+        "Description": "Invoice",
+        "Debit": "$305.00",
+        "Credit": "",
+        "Running Balance": "$1,285.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Oct Inv 103",
+        "Date": "9/27/2023",
+        "Description": "Invoice",
+        "Debit": "$290.00",
+        "Credit": "",
+        "Running Balance": "$1,575.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "4590700291JO",
+        "Date": "10/19/2023",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$360.00",
+        "Running Balance": "$980.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Nov Inv 104",
+        "Date": "12/16/2023",
+        "Description": "Invoice",
+        "Debit": "$325.00",
+        "Credit": "",
+        "Running Balance": "$1,900.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "4507600353JO",
+        "Date": "12/20/2023",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$595.00",
+        "Running Balance": "$1,305.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Dec Inv 105",
+        "Date": "4/5/2024",
+        "Description": "Invoice",
+        "Debit": "$350.00",
+        "Credit": "",
+        "Running Balance": "$1,655.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Jan Inv 106",
+        "Date": "4/5/2024",
+        "Description": "Invoice",
+        "Debit": "$410.00",
+        "Credit": "",
+        "Running Balance": "$2,065.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Feb Inv 107",
+        "Date": "4/5/2024",
+        "Description": "Invoice",
+        "Debit": "$305.00",
+        "Credit": "",
+        "Running Balance": "$2,370.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Mar Inv 108",
+        "Date": "4/5/2024",
+        "Description": "Invoice",
+        "Debit": "$355.00",
+        "Credit": "",
+        "Running Balance": "$2,725.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "5541400099JO",
+        "Date": "4/9/2024",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$350.00",
+        "Running Balance": "$2,375.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "3755900113JO",
+        "Date": "4/23/2024",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$410.00",
+        "Running Balance": "$1,965.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "1925800121JO",
+        "Date": "5/2/2024",
+        "Description": "Reciept",
+        "Debit": "",
+        "Credit": "-$655.00",
+        "Running Balance": "$1,310.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Apr Inv 110",
+        "Date": "5/15/2025",
+        "Description": "Invoice",
+        "Debit": "$375.00",
+        "Credit": "",
+        "Running Balance": "$1,685.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "2672300164JO",
+        "Date": "6/13/2024",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$375.00",
+        "Running Balance": "$1,310.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "May Inv 111",
+        "Date": "6/15/2024",
+        "Description": "Invoice",
+        "Debit": "$390.00",
+        "Credit": "",
+        "Running Balance": "$1,700.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Jun Inv 113",
+        "Date": "7/15/2024",
+        "Description": "Invoice",
+        "Debit": "$340.00",
+        "Credit": "",
+        "Running Balance": "$2,040.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "2610300204JO",
+        "Date": "7/23/2024",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$390.00",
+        "Running Balance": "$1,650.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "2370800226JO",
+        "Date": "8/14/2024",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$345.00",
+        "Running Balance": "$1,305.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Jul Inv 114",
+        "Date": "8/26/2024",
+        "Description": "Invoice",
+        "Debit": "$405.00",
+        "Credit": "",
+        "Running Balance": "$1,710.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "R024R61BR1",
+        "Date": "9/9/2024",
+        "Description": "Receipt",
+        "Debit": "$405.00",
+        "Credit": "-$405.00",
+        "Running Balance": "$1,710.00",
+        "Status": "Payment bounced. Automatically returned to sender after 30 days."
+    },
+    {
+        "Reference (Click to view)": "Aug Inv 115",
+        "Date": "9/26/2024",
+        "Description": "Invoice",
+        "Debit": "$324.50",
+        "Credit": "",
+        "Running Balance": "$2,034.50",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "2080184267JS",
+        "Date": "10/2/2024",
+        "Description": "Receipt",
+        "Debit": "",
+        "Credit": "-$345.00",
+        "Running Balance": "$1,689.50",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Sep Inv 116",
+        "Date": "10/17/2024",
+        "Description": "Invoice",
+        "Debit": "$393.00",
+        "Credit": "",
+        "Running Balance": "$2,082.50",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Oct Inv 117",
+        "Date": "11/15/2024",
+        "Description": "Invoice",
+        "Debit": "$311.50",
+        "Credit": "",
+        "Running Balance": "$2,394.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Nov Inv 118",
+        "Date": "12/16/2024",
+        "Description": "Invoice",
+        "Debit": "$307.00",
+        "Credit": "",
+        "Running Balance": "$2,701.00",
+        "Status": ""
+    },
+    {
+        "Reference (Click to view)": "Dec Inv 120",
+        "Date": "2/1/2025",
+        "Description": "Invoice",
+        "Debit": "$306.00",
+        "Credit": "",
+        "Running Balance": "$3,007.00",
+        "Status": "PAID"
+    }
+]

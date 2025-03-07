@@ -1,0 +1,17 @@
+{
+    "drink_rocketfuel.py": [
+        {
+            "tested_at": "2025-03-06T00:00:00Z",
+            "results": {
+                "ignite_thrusters": {
+                    "local": {"status": "success", "message": "Thrusters engaged."},
+                    "api": {"status": "success", "message": "Thrusters engaged."}
+                },
+                "hyperjump": {
+                    "local": {"status": "error", "message": "Fuel depleted."},
+                    "api": {"status": "error", "message": "Fuel depleted."}
+                }
+            }
+        }
+    ]
+}

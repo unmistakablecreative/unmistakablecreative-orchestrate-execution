@@ -1,0 +1,36 @@
+{
+    "tools": {
+        "airtable_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/airtable_tool.py",
+            "installed": true
+        },
+        "dropbox_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/dropbox_tool.py",
+            "installed": true
+        },
+        "gmail_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/gmail_tool.py",
+            "installed": true
+        },
+        "ideogram_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/ideogram_tool.py",
+            "installed": true
+        },
+        "leonardo_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/leonardo_tool.py",
+            "installed": true
+        },
+        "mailjet_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/mailjet_tool.py",
+            "installed": true
+        },
+        "mem_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/mem_tool.py",
+            "installed": true
+        },
+        "readwise_tool": {
+            "repo_url": "https://raw.githubusercontent.com/unmistakablecreative/orchestrate-marketplace/refs/heads/main/readwise_tool.py",
+            "installed": true
+        }
+    }
+}

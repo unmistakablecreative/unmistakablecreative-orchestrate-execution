@@ -1,6 +1,6 @@
 import json
-import argparse
 import os
+import argparse
 from datetime import datetime
 
 RECALL_FILE = "orchestrate_recall.json"
@@ -29,11 +29,11 @@ def add_entry(content, context=None):
         "content": content,
         "context": context or "General"
     }
-
+    
     data = read_recall()
     data["entries"].append(entry)
     write_recall(data)
-
+    
     return {"status": "success", "message": "✅ Entry added to Orchestrate Recall."}
 
 def search_entries(keyword):
@@ -50,43 +50,24 @@ def show_all_entries():
     ensure_recall_file()
     return {"status": "success", "entries": read_recall()["entries"]}
 
-def get_supported_actions():
-    """Return supported actions and their parameters."""
-    return {
-        "add_entry": ["content", "context"],
-        "search_entries": ["keyword"],
-        "show_all_entries": [],
-        "get_supported_actions": []
-    }
-
 def main():
     parser = argparse.ArgumentParser(description="Orchestrate Recall Tool")
-    parser.add_argument("action", type=str, choices=["add_entry", "search_entries", "show_all_entries", "get_supported_actions"],
-                        help="Action to perform")
+    parser.add_argument("action", choices=["add_entry", "search_entries", "show_all_entries"], help="Action to perform")
     parser.add_argument("--params", type=str, help="JSON-encoded parameters for the action")
 
     args = parser.parse_args()
     params = json.loads(args.params) if args.params else {}
 
     if args.action == "add_entry":
-        if "content" not in params:
-            print(json.dumps({"status": "error", "message": "❌ 'content' is required for add_entry."}, indent=4))
-        else:
-            result = add_entry(params["content"], params.get("context", "General"))
-            print(json.dumps(result, indent=4))
-
+        result = add_entry(params.get("content", ""), params.get("context", "General"))
     elif args.action == "search_entries":
-        if "keyword" not in params:
-            print(json.dumps({"status": "error", "message": "❌ 'keyword' is required for search_entries."}, indent=4))
-        else:
-            result = search_entries(params["keyword"])
-            print(json.dumps(result, indent=4))
-
+        result = search_entries(params.get("keyword", ""))
     elif args.action == "show_all_entries":
-        print(json.dumps(show_all_entries(), indent=4))
-
-    elif args.action == "get_supported_actions":
-        print(json.dumps(get_supported_actions(), indent=4))  # ✅ Now properly executed
+        result = show_all_entries()
+    else:
+        result = {"status": "error", "message": "Invalid action."}
+    
+    print(json.dumps(result, indent=4))
 
 if __name__ == "__main__":
     main()
